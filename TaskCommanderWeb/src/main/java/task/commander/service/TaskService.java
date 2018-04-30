@@ -1,5 +1,7 @@
 package task.commander.service;
 
+import java.sql.Timestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,7 @@ public class TaskService {
 	public Task create(TaskDTO taskDTO) {
 		
 		User user = userRepository.findByEmail(taskDTO.getAssignee()).orElseThrow(NotFoundException::new);
-		Task task = new Task(taskDTO.getName(), taskDTO.getDescription(), user);
+		Task task = new Task(taskDTO.getName(), taskDTO.getDescription(), user, new Timestamp(0));
 		
 		TaskGroup taskGroup = taskGroupRepository.findById(taskDTO.getGroup_id()).orElseThrow(NotFoundException::new);
 		

@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -44,17 +45,24 @@ public class TaskGroup {
 	@JoinTable(name = "task_groups_tasks", joinColumns = { @JoinColumn(name = "task_group_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "task_id") })
 	private Collection<Task> tasks;
+	
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinTable(name = "group_messages", joinColumns = { @JoinColumn(name = "task_group_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "message_id") })
+	private Collection<Message> messages = new ArrayList<Message>();
 
 	public TaskGroup() {
 		super();
 		this.members = new ArrayList<>();
 		this.tasks = new ArrayList<>();
+		
 	}
 
 	public TaskGroup(String name, Collection<User> members) {
 		super();
 		this.name = name;
 		this.members = members;
+		
 	}
 
 	@JsonIgnoreProperties({ "task_groups" })

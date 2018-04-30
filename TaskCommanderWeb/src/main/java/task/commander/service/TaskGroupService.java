@@ -14,18 +14,18 @@ import task.commander.repository.UserRepository;
 
 @Service
 public class TaskGroupService {
-	
+
 	@Autowired
 	TaskGroupRepository taskGroupRepository;
 	@Autowired
 	UserRepository userRepository;
-	
-	public TaskGroup create(GroupDTO groupDTO){
+
+	public TaskGroup create(GroupDTO groupDTO) {
 		TaskGroup taskGroup = new TaskGroup();
 		taskGroup.setName(groupDTO.getName());
-		
+
 		Collection<String> members = groupDTO.getMembers();
-		
+
 		User user = null;
 		for (String email : members) {
 			try {
@@ -35,14 +35,14 @@ public class TaskGroupService {
 				continue;
 			}
 		}
-		
+
 		return taskGroupRepository.save(taskGroup);
 	}
 
 	public TaskGroup removeUserFromTaskGroup(Long group_id, String user_email) {
 		TaskGroup taskGroup = taskGroupRepository.findById(group_id).orElseThrow(NotFoundException::new);
 		User user = userRepository.findByEmail(user_email).orElseThrow(NotFoundException::new);
-		
+
 		taskGroup.removeMember(user);
 		user.getTask_groups().remove(taskGroup);
 		taskGroup = taskGroupRepository.save(taskGroup);
@@ -53,14 +53,17 @@ public class TaskGroupService {
 	public TaskGroup addMembersToGroup(Long group_id, String user_email) {
 		TaskGroup taskGroup = taskGroupRepository.findById(group_id).orElseThrow(NotFoundException::new);
 		User user = userRepository.findByEmail(user_email).orElseThrow(NotFoundException::new);
-		
+
 		taskGroup.getMembers().add(user);
 		user.getTask_groups().add(taskGroup);
 		taskGroup = taskGroupRepository.save(taskGroup);
 		userRepository.save(user);
 		return taskGroup;
 	}
-	
-	
-	
+
+	public TaskGroup getGroup(Long group_id) {
+		TaskGroup taskGroup = taskGroupRepository.findById(group_id).orElseThrow(NotFoundException::new);
+		return taskGroup;
+	}
+
 }

@@ -1,5 +1,8 @@
 package task.commander.model;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,6 +40,7 @@ public class Task {
 	
 	private boolean completed;
 	
+	private Timestamp deadline;
 	
 	public Task() {
 		super();
@@ -44,22 +48,21 @@ public class Task {
 	}
 
 
-	public Task(@Size(max = 40) @NotNull String name, @Size(max = 60) String description, User assignee) {
+	public Task( @Size(max = 40) @NotNull String name, @Size(max = 60) String description, User assignee,
+			 Timestamp deadline) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.assignee = assignee;
-		this.completed = false;
+		this.completed = completed;
+		this.deadline = deadline;
 	}
 	
 	@JsonIgnoreProperties({ "task_groups"})
 	public User getAssignee(){
 		return assignee;
 	}
-	
 
-	
-	
-	
 	
 }
