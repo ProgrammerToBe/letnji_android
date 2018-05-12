@@ -1,24 +1,21 @@
 package task.commander.dto;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 import lombok.Data;
 
 @Data
 public class GroupDTO {
-	
+	private Long uid;
 	private String name;
-	private Collection<String> members ;
+	private ArrayList<String> members ;
 	
-	
-	
-	public GroupDTO(String name, Collection<String> members) {
+	public GroupDTO(String name, ArrayList<String> members) {
 		super();
 		this.name = name;
 		this.members = members;
+		
 	}
-
-
 
 	public GroupDTO() {
 		super();

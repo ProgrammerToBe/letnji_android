@@ -1,5 +1,7 @@
 package task.commander.controller;
 
+import java.util.Collection;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import task.commander.dto.TaskDTO;
 import task.commander.model.Task;
-import task.commander.model.TaskGroup;
 import task.commander.service.TaskService;
 
 @Controller
@@ -42,19 +43,42 @@ public class TaskController {
 	}
 	
 	@RequestMapping(
-			value = "/complete/{task_id}",
+			value = "/complete/{task_id}/{email}",
 			method = RequestMethod.PUT,
-			consumes = MediaType.APPLICATION_JSON_VALUE,
+			
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Task> createTask(@PathVariable("task_id") Long task_id , HttpServletRequest request) throws Exception {
-		
+	public ResponseEntity<Collection<Task>> createTask(@PathVariable("task_id") Long task_id, @PathVariable("email") String email, HttpServletRequest request) throws Exception {
+		System.out.println("=====================HIT COMPLETE=========================");
 		Task task;
 		try {
-			task = taskService.complete(task_id);
-			return new ResponseEntity<Task>(task, HttpStatus.OK);
+			
+			return new ResponseEntity<Collection<Task>>(taskService.complete(task_id, email), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
 	}
+	
+	@RequestMapping(
+			value = "/find/{filter}/{id}",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Collection<Task>> find(@PathVariable("filter") String filter, @PathVariable("id") String id , HttpServletRequest request) throws Exception {
+		
+		System.out.println("===============================POGODJEN FIND===========================");
+		
+		if(filter.equals("assignee")){
+			return new ResponseEntity<Collection<Task>>(taskService.getTasksByAssignee(id), HttpStatus.OK);
+		}else if(filter.equals("group_id")){
+			try {
+				return new ResponseEntity<Collection<Task>>(taskService.getTasksByGroupId(Long.parseLong(id)), HttpStatus.OK);
+			} catch (Exception e) {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}
+		
+		return null;
+		
+	}
+	
 }

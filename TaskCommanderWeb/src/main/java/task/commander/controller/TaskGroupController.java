@@ -31,6 +31,7 @@ public class TaskGroupController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<TaskGroup> createTaskGroup(@RequestBody GroupDTO groupDTO , HttpServletRequest request) throws Exception {
 		
+		System.out.println("---------------------------PRAVIM GRUPU---------------------------");
 		TaskGroup taskGroup = taskGroupService.create(groupDTO);
 		return new ResponseEntity<TaskGroup>(taskGroup, HttpStatus.OK);
 	}
@@ -38,9 +39,10 @@ public class TaskGroupController {
 	@RequestMapping(
 			value = "/leave/{group_id}/{user_email}",
 			method = RequestMethod.PUT,
-			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<TaskGroup> leaveTaskGroup(@PathVariable("group_id") Long group_id, @PathVariable("user_email") String user_email , HttpServletRequest request) throws Exception {
+		
+		System.out.println("=======================NAPUSTAM GRUPU========================");
 		
 		TaskGroup taskGroup;
 		try {

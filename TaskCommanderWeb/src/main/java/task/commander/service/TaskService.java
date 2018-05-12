@@ -1,6 +1,7 @@
 package task.commander.service;
 
 import java.sql.Timestamp;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +29,8 @@ public class TaskService {
 	
 	public Task create(TaskDTO taskDTO) {
 		
-		User user = userRepository.findByEmail(taskDTO.getAssignee()).orElseThrow(NotFoundException::new);
-		Task task = new Task(taskDTO.getName(), taskDTO.getDescription(), user, new Timestamp(0));
+		User user = userRepository.findByEmail(taskDTO.getAssigneeMail()).orElseThrow(NotFoundException::new);
+		Task task = new Task(taskDTO.getName(), taskDTO.getDescription(), user, taskDTO.getDeadline());
 		
 		TaskGroup taskGroup = taskGroupRepository.findById(taskDTO.getGroup_id()).orElseThrow(NotFoundException::new);
 		
@@ -39,11 +40,21 @@ public class TaskService {
 		return task;
 	}
 
-	public Task complete(Long task_id) {
+	public Collection<Task> complete(Long task_id, String email) {
 		Task task = taskRepository.findById(task_id).orElseThrow(NotFoundException::new);
 		task.setCompleted(true);
+		task.setActive(false);
 		task = taskRepository.save(task);
-		return task;
+		return taskRepository.findByAssignee(email);
+	}
+	
+	public Collection<Task> getTasksByAssignee(String email){
+		return taskRepository.findByAssignee(email);
+	}
+
+	public Collection<Task> getTasksByGroupId(Long id) {
+		TaskGroup group = taskGroupRepository.findById(id).orElseThrow(NotFoundException::new);
+		return group.getTasks();
 	}
 
 }

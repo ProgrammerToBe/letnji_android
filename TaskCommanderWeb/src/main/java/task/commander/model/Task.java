@@ -1,6 +1,5 @@
 package task.commander.model;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -13,12 +12,18 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
+import task.commander.utils.SqlConstants;
 @Data
 @Entity
 @Table(name = "task")
+@SQLDelete(sql = SqlConstants.UPDATE + "task" + SqlConstants.SOFT_DELETE)
+@Where(clause = SqlConstants.ACTIVE)
 public class Task {
 
 	@Id
@@ -41,6 +46,9 @@ public class Task {
 	private boolean completed;
 	
 	private Timestamp deadline;
+	
+	 @Column(nullable = false)
+	 private boolean active = true;
 	
 	public Task() {
 		super();

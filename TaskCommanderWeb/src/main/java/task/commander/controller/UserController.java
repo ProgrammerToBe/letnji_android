@@ -33,6 +33,7 @@ public class UserController {
 	public ResponseEntity<User> createUser(@PathVariable("user_email") String user_email , HttpServletRequest request) throws Exception {
 		
 		User user = userService.initialRequestProcessing(user_email);
+		
 		System.out.println("-------------------POGODJEN-----------------------------");
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}

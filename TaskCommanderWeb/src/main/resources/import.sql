@@ -21,17 +21,17 @@ insert into task_groups_members values (2, 5);
 insert into task_groups_members values (3, 1);
 insert into task_groups_members values (3, 4);
 
-insert into task values (1, 0, NOW() ,'Take the garbage out', 'Garbage', 1);
-insert into task values (2, 0, NOW(), 'Wash the sink', 'Kitchen', 2);
-insert into task values (3, 0, NOW(), 'Repair the washing machine', 'Washing machine', 1);
-insert into task values (4, 0, NOW(), 'Write the January report', 'Jan report', 1);
-insert into task values (5, 0, NOW(), 'Ask for a raise', 'Bos', 1);
-insert into task values (6, 0, NOW(), 'Check the engine', 'Engine', 1);
-insert into task values (7, 0, NOW(), 'Do the math homework', 'Math', 3);
-insert into task values (8, 0, NOW(), 'Check the math homework', 'Homework', 2);
-insert into task values (9, 0, NOW(), '', 'Eggs', 2);
-insert into task values (10, 0, NOW(), '', 'Milk', 2);
-insert into task values (11, 0, NOW(), '', 'Fish', 2);
+insert into task values (1, 1, 0, NOW() ,'Take the garbage out', 'Garbage', 1);
+insert into task values (2, 1, 0, NOW(), 'Wash the sink', 'Kitchen', 2);
+insert into task values (3, 1, 0, NOW(), 'Repair the washing machine', 'Washing machine', 1);
+insert into task values (4, 1, 0, NOW(), 'Write the January report', 'Jan report', 1);
+insert into task values (5, 1, 0, NOW(), 'Ask for a raise', 'Bos', 1);
+insert into task values (6, 1, 0, NOW(), 'Check the engine', 'Engine', 1);
+insert into task values (7, 1, 0, NOW(), 'Do the math homework', 'Math', 3);
+insert into task values (8, 1, 0, NOW(), 'Check the math homework', 'Homework', 2);
+insert into task values (9, 1, 0, NOW(), '', 'Eggs', 2);
+insert into task values (10, 1, 0, NOW(), '', 'Milk', 2);
+insert into task values (11, 1, 0, NOW(), '', 'Fish', 2);
 
 insert into task_groups_tasks values (1, 1);
 insert into task_groups_tasks values (1, 2);

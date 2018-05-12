@@ -26,16 +26,22 @@ public class TaskGroupService {
 
 		Collection<String> members = groupDTO.getMembers();
 
+		taskGroup = taskGroupRepository.save(taskGroup);
+		
 		User user = null;
-		for (String email : members) {
-			try {
-				user = userRepository.findByEmail(email).orElseThrow(NotFoundException::new);
-				taskGroup.addMember(user);
-			} catch (NotFoundException e) {
-				continue;
+		if(members!=null){
+			for (String email : members) {
+				try {
+					user = userRepository.findByEmail(email).orElseThrow(NotFoundException::new);
+					taskGroup.addMember(user);
+					user.getTask_groups().add(taskGroup);
+					userRepository.save(user);
+				} catch (NotFoundException e) {
+					continue;
+				}
 			}
 		}
-
+		
 		return taskGroupRepository.save(taskGroup);
 	}
 
