@@ -30,7 +30,7 @@ public class MessageService {
 		
 		User user = userRepository.findByEmail(messageDTO.getSender()).orElseThrow(NotFoundException::new);
 		
-		Message message = new Message(messageDTO.getText(), user);
+		Message message = new Message(messageDTO.getText(), user.getEmail());
 		message.setTimestamp(new Timestamp(System.currentTimeMillis()));
 		message = messageRepository.save(message);
 		

@@ -37,7 +37,8 @@ public class MessageController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Message> createMessage(@PathVariable("group_id") Long group_id,
 			@RequestBody MessageDTO msg , HttpServletRequest request) throws Exception {
-		
+
+		System.out.println("-----------------------------CUVAMO MSG------------------------");
 		Message message = messageService.create(msg, group_id);
 		return new ResponseEntity<Message>(message, HttpStatus.OK);
 	}
@@ -48,7 +49,7 @@ public class MessageController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection<Message>> getMessages(@PathVariable("group_id") Long group_id,
 			HttpServletRequest request) throws Exception {
-		
+		System.out.println("SAMO ISPIS NESTOO");
 		TaskGroup taskGroup = taskGroupService.getGroup(group_id);
 		
 		return new ResponseEntity<Collection<Message>>(taskGroup.getMessages(), HttpStatus.OK);

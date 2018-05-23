@@ -45,11 +45,11 @@ insert into task_groups_tasks values (5, 9);
 insert into task_groups_tasks values (5, 10);
 insert into task_groups_tasks values (5, 11);
 
-insert into message values (1, "Poruka od mame", NOW(), 1);
-insert into message values (2, "Poruka od tate", NOW(), 2);
-insert into message values (3, "Poruka od deteta", NOW(), 3);
-insert into message values (4, "Poruka od tate2", NOW(), 1);
-insert into message values (5, "Poruka od mame2", NOW(), 2);
+insert into message values (1, "dad@mail.com", "Poruka od tate", NOW());
+insert into message values (2,  "mum@mail.com",  "Poruka od mame", NOW());
+insert into message values (3, "kid@mail.com", "Poruka od deteta", NOW());
+insert into message values (4, "dad@mail.com", "Poruka od tate2", NOW());
+insert into message values (5, "mum@mail.com", "Poruka od mame2", NOW());
 
 insert into group_messages values (1, 1);
 insert into group_messages values (1, 2);
