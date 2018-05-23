@@ -21,17 +21,17 @@ insert into task_groups_members values (2, 5);
 insert into task_groups_members values (3, 1);
 insert into task_groups_members values (3, 4);
 
-insert into task values (1, 1, 0, NOW() ,'Take the garbage out', 'Garbage', 1);
-insert into task values (2, 1, 0, NOW(), 'Wash the sink', 'Kitchen', 2);
-insert into task values (3, 1, 0, NOW(), 'Repair the washing machine', 'Washing machine', 1);
-insert into task values (4, 1, 0, NOW(), 'Write the January report', 'Jan report', 1);
-insert into task values (5, 1, 0, NOW(), 'Ask for a raise', 'Bos', 1);
-insert into task values (6, 1, 0, NOW(), 'Check the engine', 'Engine', 1);
-insert into task values (7, 1, 0, NOW(), 'Do the math homework', 'Math', 3);
-insert into task values (8, 1, 0, NOW(), 'Check the math homework', 'Homework', 2);
-insert into task values (9, 1, 0, NOW(), '', 'Eggs', 2);
-insert into task values (10, 1, 0, NOW(), '', 'Milk', 2);
-insert into task values (11, 1, 0, NOW(), '', 'Fish', 2);
+insert into task values (1, 1, 0, NOW() ,'Take the garbage out', -1000, -1000, 'Garbage', 1);
+insert into task values (2, 1, 0, NOW(), 'Wash the sink',  -1000, -1000,'Kitchen', 2);
+insert into task values (3, 1, 0, NOW(), 'Repair the washing machine', -1000, -1000, 'Washing machine', 1);
+insert into task values (4, 1, 0, NOW(), 'Write the January report', -1000, -1000, 'Jan report', 1);
+insert into task values (5, 1, 0, NOW(), 'Ask for a raise',  -1000, -1000, 'Bos', 1);
+insert into task values (6, 1, 0, NOW(), 'Check the engine',  -1000, -1000,'Engine', 1);
+insert into task values (7, 1, 0, NOW(), 'Do the math homework', -1000, -1000, 'Math', 3);
+insert into task values (8, 1, 0, NOW(), 'Check the math homework',  -1000, -1000,'Homework', 2);
+insert into task values (9, 1, 0, NOW(), '', -1000, -1000, 'Eggs', 2);
+insert into task values (10, 1, 0, NOW(), '',-1000, -1000, 'Milk', 2);
+insert into task values (11, 1, 0, NOW(), '', -1000, -1000, 'Fish', 2);
 
 insert into task_groups_tasks values (1, 1);
 insert into task_groups_tasks values (1, 2);

@@ -60,6 +60,23 @@ public class TaskController {
 	}
 	
 	@RequestMapping(
+			value = "/setLocation",
+			method = RequestMethod.PUT,
+			
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Task> setTaskLocation(@RequestBody Task task, HttpServletRequest request) throws Exception {
+		System.out.println("=====================HIT SET LOCATION=========================");
+		
+		try {
+			
+			return new ResponseEntity<Task>(taskService.editLocation(task), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+	}
+	
+	@RequestMapping(
 			value = "/find/{filter}/{id}",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
