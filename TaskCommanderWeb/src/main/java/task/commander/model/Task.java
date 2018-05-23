@@ -40,6 +40,9 @@ public class Task {
 	@Size(max = 60)
 	private String description;
 	
+	private double latitude = -1000;
+	private double longitude = -1000;
+	
 	@ManyToOne
 	private User assignee;
 	
