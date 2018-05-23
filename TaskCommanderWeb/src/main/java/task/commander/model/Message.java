@@ -28,14 +28,13 @@ public class Message {
 	@NotNull
 	private String text;
 	
-	@ManyToOne
 	@NotNull
-	private User sender;
+	private String sender;
 	
 	private Timestamp timestamp;
 	
 	
-	public Message(String text, User sender) {
+	public Message(String text, String sender) {
 		super();
 		this.text = text;
 		this.sender = sender;
@@ -46,8 +45,7 @@ public class Message {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@JsonIgnoreProperties({"task_groups"})
-	public User getSender(){
+	public String getSender(){
 		return sender;
 	}
 
