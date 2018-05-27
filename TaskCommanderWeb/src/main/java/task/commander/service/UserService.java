@@ -13,13 +13,13 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public User initialRequestProcessing(String email){
+	public User initialRequestProcessing(String email, String uid){
 		
 		try {
 			User user = userRepository.findByEmail(email).orElseThrow(NotFoundException::new);
 			return user;
 		} catch (NotFoundException e) {
-			User user = new User(email);
+			User user = new User(email, uid);
 			return userRepository.save(user);
 		}
 		

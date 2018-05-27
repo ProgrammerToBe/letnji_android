@@ -27,12 +27,14 @@ public class UserController {
 	 * ako postoji povuci sve njegove grupe i taskove
 	 */
 	@RequestMapping(
-			value = "/initialRequest/{user_email}",
+			value = "/initialRequest/{user_email}/{user_uid}",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> createUser(@PathVariable("user_email") String user_email , HttpServletRequest request) throws Exception {
+	public ResponseEntity<User> createUser(@PathVariable("user_email") String user_email ,
+			@PathVariable("user_uid") String user_uid,
+			HttpServletRequest request) throws Exception {
 		
-		User user = userService.initialRequestProcessing(user_email);
+		User user = userService.initialRequestProcessing(user_email, user_uid);
 		
 		System.out.println("-------------------POGODJEN-----------------------------");
 		return new ResponseEntity<User>(user, HttpStatus.OK);

@@ -33,10 +33,13 @@ public class User {
 
 	
 	@Column(unique = true, nullable = false)
-	
 	@NotNull
 	@Email
 	private String email;
+	
+	@Column(unique = true, nullable = false)
+	@NotNull
+	private String uid;
 	
 	@Column(name="task_groups")
 	@ManyToMany(cascade = { CascadeType.ALL}, fetch = FetchType.EAGER )
@@ -56,8 +59,9 @@ public class User {
 		this.task_groups = groups;
 	}
 
-	public User(String email) {
+	public User(String email, String uid) {
 		this.email = email;
+		this.uid = uid;
 		this.task_groups = new ArrayList<TaskGroup>();
 	}	
 	
