@@ -1,5 +1,7 @@
 package task.commander.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +26,8 @@ public class UserService {
 		}
 		
 	}
-
+	
+	public User getUserByEmail(String email) {
+		return userRepository.findByEmail(email).orElseThrow(NotFoundException::new);
+	}
 }
