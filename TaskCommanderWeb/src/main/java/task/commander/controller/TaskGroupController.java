@@ -73,7 +73,6 @@ public class TaskGroupController {
 	@RequestMapping(
 			value = "/addMember/{group_id}/{user_email}",
 			method = RequestMethod.PUT,
-			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<TaskGroup> addMemberToTaskGroup(@PathVariable("group_id") Long group_id, @PathVariable("user_email") String user_email , HttpServletRequest request) throws Exception {
 		

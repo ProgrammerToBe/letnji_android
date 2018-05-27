@@ -1,7 +1,7 @@
 
 insert into user values ('1', 'dad@mail.com', '123');
-insert into user values ('2', 'mum@mail.com', '123');
-insert into user values ('3', 'kid@mail.com', '123');
+insert into user values ('2', 'mum@mail.com', '125');
+insert into user values ('3', 'kid@mail.com', '127');
 
 insert into task_group values ('1', 'Home');
 insert into task_group values ('2', 'Office');
